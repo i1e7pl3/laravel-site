@@ -1,19 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="article-container">
-    <div class="article-card">
-        <h1 class="article-title">{{ $article->title }}</h1>
-        <p class="article-text">{{ $article->content }}</p>
+    <div class="news-show">
+        <h1 class="news-show__title">{{ $article->title }}</h1>
+
+        <div class="news-show__date">
+            {{ $article->created_at->format('d.m.Y') }}
+        </div>
 
         @if($article->image)
-            <img src="{{ asset($article->image) }}" alt="{{ $article->title }}" class="article-image">
+            <img src="{{ asset($article->image) }}" alt="{{ $article->title }}" class="news-show__image">
         @endif
 
-        <div class="article-actions">
-            <a href="{{ route('articles.edit', $article) }}" class="btn btn-primary">Редактировать</a>
-            <a href="{{ route('articles.index') }}" class="btn btn-secondary">Назад</a>
+        <div class="news-show__content">
+            {{ $article->content }}
         </div>
+
+        <a href="{{ route('articles.index') }}" class="btn btn--secondary">Назад</a>
     </div>
-</div>
 @endsection

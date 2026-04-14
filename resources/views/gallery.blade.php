@@ -1,12 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Галерея</h1>
+    <div class="news-show">
+        
+        <h1 class="news-show__title">{{ $article->title }}</h1>
 
-    @if($item)
-        <h2>{{ $item['title'] }}</h2>
-        <img src="{{ asset($item['full_image']) }}" alt="{{ $item['title'] }}" style="max-width: 100%;">
-    @else
-        <p>Изображение не найдено.</p>
-    @endif
+        <div class="news-show__date">
+            {{ $article->created_at->format('d.m.Y') }}
+        </div>
+
+        @if($article->image)
+            <img src="{{ asset($article->image) }}" alt="{{ $article->title }}" class="news-show__image">
+        @endif
+
+        <div class="news-show__content">
+            {{ $article->content }}
+        </div>
+
+        <a href="{{ route('main') }}" class="btn btn--secondary">Назад</a>
+    </div>
 @endsection

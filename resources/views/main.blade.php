@@ -1,30 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Главная страница</h1>
+    <div class="news-page">
+        <h1 class="news-page__title">Главная страница</h1>
 
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>Дата</th>
-                <th>Название</th>
-                <th>Превью</th>
-                <th>Кратко</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($items as $item)
-                <tr>
-                    <td>{{ $item['date'] }}</td>
-                    <td>{{ $item['name'] }}</td>
-                    <td>
-                        <a href="{{ route('gallery', ['id' => $loop->index]) }}">
-                            <img src="{{ asset($item['preview_image']) }}" alt="{{ $item['name'] }}" width="120">
+        @if($items->count())
+            <div class="news-grid">
+                @foreach($items as $item)
+                    <article class="news-card">
+                        <a href="{{ route('articles.show', $item) }}" class="news-card__image-link">
+                            <img src="{{ asset($item->image) }}" alt="{{ $item->title }}" class="news-card__image">
                         </a>
-                    </td>
-                    <td>{{ $item['shortDesc'] ?? '' }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+
+                        <div class="news-card__body">
+                            <div class="news-card__date">
+                                {{ $item->created_at->format('d.m.Y') }}
+                            </div>
+
+                            <h2 class="news-card__title">{{ $item->title }}</h2>
+
+                            <p class="news-card__text">
+                                {{ \Illuminate\Support\Str::limit($item->content, 120) }}
+                            </p>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        @else
+            <p class="news-empty">Новостей пока нет.</p>
+        @endif
+    </div>
 @endsection

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
@@ -16,24 +19,59 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|min:2|max:100',
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
-        $path = public_path('users.json');
-        $users = [];
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
 
-        if (File::exists($path)) {
-            $users = json_decode(File::get($path), true) ?? [];
+        return redirect()->route('login.form');
+    }
+
+    public function loginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if (!Auth::attempt($credentials)) {
+            return back()
+                ->withErrors(['email' => 'Неверный email или пароль'])
+                ->onlyInput('email');
         }
 
-        $users[] = $validated;
+        $request->session()->regenerate();
 
-        File::put($path, json_encode($users, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        $user = Auth::user();
+        $user?->createToken('web-token')->plainTextToken;
 
-        return response()->json([
-            'message' => 'Данные успешно сохранены',
-            'data' => $validated,
-        ]);
+        return redirect()->route('main');
+    }
+
+    public function logout(Request $request)
+    {
+        $user = $request->user();
+
+        $token = $user?->currentAccessToken();
+        if ($token instanceof PersonalAccessToken) {
+            $token->delete();
+        }
+
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('main');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -11,5 +12,47 @@ class ArticleController extends Controller
     $articles = Article::latest()->get();
 
     return view('articles.index', compact('articles'));
+}
+public function edit(Article $article)
+{
+    return view('articles.edit', compact('article'));
+}
+public function create()
+{
+    return view('articles.create');
+}
+public function update(Request $request, Article $article)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'content' => 'required|string',
+        'image' => 'nullable|string|max:255',
+    ]);
+
+    $article->update($validated);
+
+    return redirect()->route('articles.index');
+}
+public function destroy(Article $article)
+{
+    $article->delete();
+
+    return redirect()->route('articles.index');
+}
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'content' => 'required|string',
+        'image' => 'nullable|string|max:255',
+    ]);
+
+    Article::create($validated);
+
+    return redirect()->route('articles.index');
+}
+public function show(Article $article)
+{
+    return view('gallery', compact('article'));
 }
 }

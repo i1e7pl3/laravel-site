@@ -1,27 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Article;
 
 use Illuminate\Support\Facades\File;
 
 class MainController extends Controller
 {
-    public function index()
-    {
-        $path = public_path('articles.json');
-        $json = File::get($path);
-        $items = json_decode($json, true);
-
-        return view('main', compact('items'));
-    }
-
-    public function gallery($id)
+public function index()
 {
-    $path = public_path('articles.json');
-    $json = File::get($path);
-    $items = json_decode($json, true) ?? [];
+    $items = Article::latest()->get();
 
-    $item = $items[$id] ?? null;
+    return view('main', compact('items'));
+}
+
+public function gallery($id)
+{
+    $item = Article::findOrFail($id);
 
     return view('gallery', compact('item'));
 }

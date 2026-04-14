@@ -8,30 +8,35 @@
         @csrf
 
         <div class="form-group">
-            <label for="name">Имя</label>
-            <input type="text" name="name" id="name" value="{{ old('name') }}">
+            <label>Имя</label>
+            <input type="text" name="name" value="{{ old('name') }}">
             @error('name')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}">
+            <label>Email</label>
+            <input type="email" name="email" value="{{ old('email') }}">
             @error('email')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="password">Пароль</label>
-            <input type="password" name="password" id="password">
+            <label>Пароль</label>
+            <input type="password" name="password">
             @error('password')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
 
-        <button type="submit">Отправить</button>
+        <div class="form-group">
+            <label>Повтор пароля</label>
+            <input type="password" name="password_confirmation">
+        </div>
+
+        <button type="submit">Зарегистрироваться</button>
     </form>
 </div>
 @endsection
