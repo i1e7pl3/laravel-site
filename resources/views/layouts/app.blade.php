@@ -11,6 +11,7 @@
             <a href="{{ route('main') }}">Главная</a>
             <a href="{{ route('about') }}">О нас</a>
             <a href="{{ route('contacts') }}">Контакты</a>
+            <a href="{{ route('signin.form') }}">Регистрация</a>
         </nav>
     </header>
 
