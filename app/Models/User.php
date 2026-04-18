@@ -4,11 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-<<<<<<< HEAD
-=======
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
->>>>>>> d2046f5 (7 practice)
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -26,10 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-<<<<<<< HEAD
-=======
         'role_id',
->>>>>>> d2046f5 (7 practice)
     ];
 
     /**
@@ -51,8 +45,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-<<<<<<< HEAD
-=======
 
     public function role(): BelongsTo
     {
@@ -73,5 +65,4 @@ class User extends Authenticatable
     {
         return $this->role?->slug === Role::SLUG_READER;
     }
->>>>>>> d2046f5 (7 practice)
 }

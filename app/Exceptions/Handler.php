@@ -2,10 +2,7 @@
 
 namespace App\Exceptions;
 
-<<<<<<< HEAD
-=======
 use Illuminate\Auth\Access\AuthorizationException;
->>>>>>> d2046f5 (7 practice)
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -31,8 +28,6 @@ class Handler extends ExceptionHandler
             //
         });
     }
-<<<<<<< HEAD
-=======
 
     public function render($request, Throwable $e)
     {
@@ -52,5 +47,4 @@ class Handler extends ExceptionHandler
 
         return parent::render($request, $e);
     }
->>>>>>> d2046f5 (7 practice)
 }

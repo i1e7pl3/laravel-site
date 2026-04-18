@@ -508,8 +508,6 @@ img {
 
 .btn--secondary:hover {
     opacity: 0.9;
-<<<<<<< HEAD
-=======
 }
 
 .flash {
@@ -610,5 +608,4 @@ img {
 .btn--small {
     padding: 6px 12px;
     font-size: 14px;
->>>>>>> d2046f5 (7 practice)
 }

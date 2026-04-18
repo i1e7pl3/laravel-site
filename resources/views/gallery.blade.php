@@ -2,11 +2,7 @@
 
 @section('content')
     <div class="news-show">
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> d2046f5 (7 practice)
         <h1 class="news-show__title">{{ $article->title }}</h1>
 
         <div class="news-show__date">
@@ -21,11 +17,6 @@
             {{ $article->content }}
         </div>
 
-<<<<<<< HEAD
-        <a href="{{ route('main') }}" class="btn btn--secondary">Назад</a>
-    </div>
-@endsection
-=======
         @auth
             @can('update', $article)
                 <p class="news-show__admin">
@@ -80,4 +71,3 @@
         <a href="{{ route('main') }}" class="btn btn--secondary">Назад</a>
     </div>
 @endsection
->>>>>>> d2046f5 (7 practice)

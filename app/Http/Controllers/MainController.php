@@ -16,15 +16,9 @@ public function index()
 
 public function gallery($id)
 {
-<<<<<<< HEAD
-    $item = Article::findOrFail($id);
-
-    return view('gallery', compact('item'));
-=======
     $article = Article::findOrFail($id);
     $article->load(['comments.user']);
 
     return view('gallery', compact('article'));
->>>>>>> d2046f5 (7 practice)
 }
 }

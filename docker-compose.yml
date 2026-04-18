@@ -8,17 +8,13 @@ services:
     depends_on:
       - db
       - mailpit
-    # DNS внутри контейнера: иначе часто падает "Could not resolve host: api.github.com" при composer install
     dns:
       - 8.8.8.8
       - 8.8.4.4
       - 1.1.1.1
-    # Обход поломанного DNS в Docker/WSL: smtp.mail.ru → IP (при ошибке TLS/подключения проверьте актуальный IP:
-    # curl -s "https://dns.google/resolve?name=smtp.mail.ru&type=A" | head -c 200)
     extra_hosts:
       - "smtp.mail.ru:217.69.139.160"
     ports:
-      # если порт занят — поменяйте левое число (хост), например "8080:8000"
       - "8080:8000"
 
   db:
