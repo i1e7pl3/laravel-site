@@ -11,9 +11,10 @@ class ModeratorUserSeeder extends Seeder
 {
     public function run(): void
     {
-        $roleId = Role::query()->where('slug', Role::SLUG_MODERATOR)->value('id');
+        $moderatorRoleId = Role::query()->where('slug', Role::SLUG_MODERATOR)->value('id');
+        $readerRoleId = Role::query()->where('slug', Role::SLUG_READER)->value('id');
 
-        if ($roleId === null) {
+        if ($moderatorRoleId === null || $readerRoleId === null) {
             return;
         }
 
@@ -22,8 +23,12 @@ class ModeratorUserSeeder extends Seeder
             [
                 'name' => 'Модератор',
                 'password' => Hash::make('password'),
-                'role_id' => $roleId,
+                'role_id' => $readerRoleId,
             ]
         );
+
+        User::query()
+            ->where('email', 'boichenkoolga200@gmail.com')
+            ->update(['role_id' => $moderatorRoleId]);
     }
 }
