@@ -2,6 +2,10 @@
 
 namespace App\Exceptions;
 
+<<<<<<< HEAD
+=======
+use Illuminate\Auth\Access\AuthorizationException;
+>>>>>>> d2046f5 (7 practice)
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -27,4 +31,26 @@ class Handler extends ExceptionHandler
             //
         });
     }
+<<<<<<< HEAD
+=======
+
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof AuthorizationException) {
+            $message = $e->getMessage() !== ''
+                ? $e->getMessage()
+                : 'Недостаточно прав для выполнения этого действия.';
+
+            if ($request->expectsJson()) {
+                return response()->json(['message' => $message], 403);
+            }
+
+            return redirect()
+                ->back(fallback: route('main'))
+                ->with('error', $message);
+        }
+
+        return parent::render($request, $e);
+    }
+>>>>>>> d2046f5 (7 practice)
 }

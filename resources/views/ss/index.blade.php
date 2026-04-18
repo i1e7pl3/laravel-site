@@ -5,15 +5,9 @@
         <div class="news-page__header">
             <h1 class="news-page__title">Новости</h1>
 
-<<<<<<< HEAD
             @auth
                 <a href="{{ route('articles.create') }}" class="btn btn--primary">Добавить новость</a>
             @endauth
-=======
-            @can('create', App\Models\Article::class)
-                <a href="{{ route('articles.create') }}" class="btn btn--primary">Добавить новость</a>
-            @endcan
->>>>>>> d2046f5 (7 practice)
         </div>
 
         <div class="news-grid">
@@ -40,7 +34,6 @@
                             {{ \Illuminate\Support\Str::limit($article->content, 140) }}
                         </p>
 
-<<<<<<< HEAD
                         @auth
                             <div class="news-card__actions">
                                 <a href="{{ route('articles.edit', $article) }}" class="btn btn--secondary">Редактировать</a>
@@ -54,24 +47,6 @@
                                 </form>
                             </div>
                         @endauth
-=======
-                        @canany(['update', 'delete'], $article)
-                            <div class="news-card__actions">
-                                @can('update', $article)
-                                    <a href="{{ route('articles.edit', $article) }}" class="btn btn--secondary">Редактировать</a>
-                                @endcan
-                                @can('delete', $article)
-                                    <form action="{{ route('articles.destroy', $article) }}" method="POST" class="inline-form">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn--danger" onclick="return confirm('Удалить новость?')">
-                                            Удалить
-                                        </button>
-                                    </form>
-                                @endcan
-                            </div>
-                        @endcanany
->>>>>>> d2046f5 (7 practice)
                     </div>
                 </article>
             @empty

@@ -508,4 +508,107 @@ img {
 
 .btn--secondary:hover {
     opacity: 0.9;
+<<<<<<< HEAD
+=======
+}
+
+.flash {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.flash--error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.flash--ok {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.comments {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.comments__title {
+    font-size: 22px;
+    margin: 0 0 16px;
+}
+
+.comments__list {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+}
+
+.comments__item {
+    padding: 16px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.comments__meta {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.comments__date {
+    margin-left: 10px;
+}
+
+.comments__body {
+    margin: 0 0 10px;
+    white-space: pre-line;
+}
+
+.comments__form {
+    max-width: 100%;
+}
+
+.comments__label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.comments__textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 12px;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.comments__error {
+    color: #b91c1c;
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.comments__empty {
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+.news-show__hint,
+.news-show__admin {
+    margin: 16px 0;
+}
+
+.btn--small {
+    padding: 6px 12px;
+    font-size: 14px;
+>>>>>>> d2046f5 (7 practice)
 }

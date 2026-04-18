@@ -17,6 +17,13 @@
             @auth
                 <a href="{{ route('articles.index') }}">Статьи</a>
 
+<<<<<<< HEAD
+=======
+                @can('create', App\Models\Article::class)
+                    <a href="{{ route('articles.create') }}">Создать новость</a>
+                @endcan
+
+>>>>>>> d2046f5 (7 practice)
                 <form method="POST" action="{{ route('logout') }}" style="display:inline;">
                     @csrf
                     <button type="submit">Выход</button>
@@ -32,6 +39,15 @@
     </header>
 
     <main class="content">
+<<<<<<< HEAD
+=======
+        @if(session('error'))
+            <p class="flash flash--error" role="alert">{{ session('error') }}</p>
+        @endif
+        @if(session('status'))
+            <p class="flash flash--ok" role="status">{{ session('status') }}</p>
+        @endif
+>>>>>>> d2046f5 (7 practice)
         @yield('content')
     </main>
 

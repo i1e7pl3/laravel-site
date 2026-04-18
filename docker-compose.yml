@@ -7,8 +7,11 @@ services:
       - ./:/var/www
     depends_on:
       - db
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     ports:
-       - "8001:8000"
+      - "8080:8000"
 
   db:
     image: mysql:8.0

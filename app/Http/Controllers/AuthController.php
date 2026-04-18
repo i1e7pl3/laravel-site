@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
+=======
+use App\Models\Role;
+>>>>>>> d2046f5 (7 practice)
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +27,19 @@ class AuthController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
+<<<<<<< HEAD
+=======
+        $readerRoleId = Role::query()->where('slug', Role::SLUG_READER)->value('id');
+
+>>>>>>> d2046f5 (7 practice)
         User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
+<<<<<<< HEAD
+=======
+            'role_id' => $readerRoleId,
+>>>>>>> d2046f5 (7 practice)
         ]);
 
         return redirect()->route('login.form');
