@@ -4,7 +4,7 @@
     <div class="news-page">
         <h1 class="news-page__title">Главная страница</h1>
 
-        @if($items->count())
+        @if($items->total() > 0)
             <div class="news-grid">
                 @foreach($items as $item)
                     <article class="news-card">
@@ -26,6 +26,12 @@
                     </article>
                 @endforeach
             </div>
+
+            @if($items->hasPages())
+                <nav class="news-pagination" aria-label="Страницы новостей">
+                    {{ $items->links() }}
+                </nav>
+            @endif
         @else
             <p class="news-empty">Новостей пока нет.</p>
         @endif

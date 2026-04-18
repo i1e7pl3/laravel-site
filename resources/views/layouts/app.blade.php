@@ -17,10 +17,6 @@
             @auth
                 <a href="{{ route('articles.index') }}">Статьи</a>
 
-                @can('create', App\Models\Article::class)
-                    <a href="{{ route('articles.create') }}">Создать новость</a>
-                @endcan
-
                 <form method="POST" action="{{ route('logout') }}" style="display:inline;">
                     @csrf
                     <button type="submit">Выход</button>
